@@ -26,20 +26,29 @@ export default class App extends Component {
     }
   }
 
-  // componentDidMount(){
-  //   PlacesAdaptor.all().then(res => res.forEach(place => {
-  //     const reviews = this.getPlaceReviews(place.id)
-  //     this.setState(prevState => {
-  //       places: prevState.places.push({
-  //         id: place.id,
-  //         name: place.name,
-  //         location: place.location,
-  //         image: place.image,
-  //         reviews: reviews
-  //         })
-  //       })
-  //     }))
-  //   }
+
+  componentDidMount(){
+    const filters = {
+    cost: "",
+    bodily_impact: "Yikes!",
+    recommended_for: "hang over city"}
+
+    this.getRandomPlace(filters)
+
+    PlacesAdaptor.all().then(res => res.forEach(place => {
+      const reviews = this.getPlaceReviews(place.id)
+      this.setState(prevState => {
+        places: prevState.places.push({
+          id: place.id,
+          name: place.name,
+          location: place.location,
+          image: place.image,
+          reviews: reviews
+          })
+        })
+      }))
+    }
+
 
   // getPlaceReviews(id){
   //   ReviewsAdaptor.all(id)
@@ -58,6 +67,9 @@ export default class App extends Component {
   //   })
   // }
 
+  getRandomPlace(filters){
+    PlacesAdaptor.create(filters).then(res => console.log(res))
+  }
 
   render() {
       return (
@@ -70,7 +82,7 @@ export default class App extends Component {
               console.log(place)
               return <PlaceReviews place={place} />
             }}
-          />
+            />
         </div>
       )
   }

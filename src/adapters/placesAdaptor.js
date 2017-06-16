@@ -6,7 +6,7 @@ export class PlacesAdaptor {
     .then(res => res.json())
   }
 
-  static create(name, location, image){
+  static create(filters){
     return fetch('http://localhost:3000/api/v1/places', {
       method: 'POST',
       headers: {
@@ -14,30 +14,13 @@ export class PlacesAdaptor {
         'accept': 'application/json'
       },
       body: JSON.stringify({
-        place: {
-          name: name,
-          location: location,
-          image: image
-        }
-      })
-    }).then(response => response.json() )
-  }
-
-  static update(place){
-    return fetch(`http://localhost:3000/api/v1/place/${place.id}`, {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
-        'accept': 'application/json'
-      },
-      body: JSON.stringify({
-        place : {
-          name : place.name,
-          location: place.location,
-          image: place.image
-        }
+        filters: {
+        cost: `${filters.cost}`,
+        bodily_impact: `${filters.bodily_impact}`,
+        recommended_for: `${filters.recommended_for}`}
       })
     })
+    .then(response => response.json() )
   }
 
 }
