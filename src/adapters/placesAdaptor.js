@@ -1,20 +1,20 @@
 
-export class RestaurantsAdaptor {
+export class PlacesAdaptor {
 
   static all(){
-    return fetch("http://localhost:3000/api/v1/restaurants")
-    .then( res => res.json() )
+    return fetch("http://localhost:3000/api/v1/places")
+    .then(res => res.json())
   }
 
   static create(name, location, image){
-    return fetch('http://localhost:3000/api/v1/restaurants', {
+    return fetch('http://localhost:3000/api/v1/places', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         'accept': 'application/json'
       },
       body: JSON.stringify({
-        restaurant: {
+        place: {
           name: name,
           location: location,
           image: image
@@ -23,18 +23,18 @@ export class RestaurantsAdaptor {
     }).then(response => response.json() )
   }
 
-  static update(restaurant){
-    return fetch(`http://localhost:3000/api/v1/restaurants/${restaurant.id}`, {
+  static update(place){
+    return fetch(`http://localhost:3000/api/v1/place/${place.id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
         'accept': 'application/json'
       },
       body: JSON.stringify({
-        restaurant : {
-          name : restaurant.name,
-          location: restaurant.location,
-          image: restaurant.image
+        place : {
+          name : place.name,
+          location: place.location,
+          image: place.image
         }
       })
     })
