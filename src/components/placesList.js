@@ -1,18 +1,36 @@
 import React from 'react'
-import { Card, Icon, Container } from 'semantic-ui-react'
+import { Card, Icon, Container, Button, Divider, Header, Message } from 'semantic-ui-react'
 import MainCard from './maincard.js'
 
-export default function PlacesList(props) {
 
 
+function PlacesList(props){
 
-      return (
-        <div>
+    return (
+      <Container>
+        <Divider hidden />
+        <Header as='h1' floated='left'>
+          Flatiron Lunch Roulette <Icon name='food' />
+        </Header>
+        <Button
+          basic
+          floated='right'
+          icon='pencil'
+          content='Add a review'
+          href='#'
+
+          />
+        <Divider hidden clearing />
+        <Divider hidden clearing />
+
         <Container text>
-
-          < MainCard place={props.places[0]} />
+      <MainCard place={props.places[0]}/>
         </Container>
-        </div>
-      )
+
+
+      </Container>
+    )
 
 }
+
+export default PlacesList
