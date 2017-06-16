@@ -11,9 +11,21 @@ export default class App extends Component {
     super()
 
     this.state = {
-      places: [],
+      places: [{
+        place_id: 1,
+        name: "Essen",
+        location: "100 Broad Street, NY, NY, 10004",
+        image: "http://experiencenomad.com/wp-content/uploads/2014/02/essen-1024x764.jpg",
+        authorization_code: "password",
+        avg_star_rating: 4,
+        mode_cost: "OTT",
+        mode_bodily_impact: "Like Yoga",
+        mode_recommended_for: "Feelings Friday"
+      }],
+
     }
   }
+
 
   componentDidMount(){
     const filters = {
@@ -37,22 +49,23 @@ export default class App extends Component {
       }))
     }
 
-  getPlaceReviews(id){
-    ReviewsAdaptor.all(id)
-    .then(res => { this.setState(prevState => {
-        return { places: prevState.places.map( place => {
-            if (place.id !== id) {
-              return place
-            }
-            else {
-              place.reviews = res
-              return place
-            }
-          })
-        }
-      })
-    })
-  }
+
+  // getPlaceReviews(id){
+  //   ReviewsAdaptor.all(id)
+  //   .then(res => { this.setState(prevState => {
+  //       return { places: prevState.places.map( place => {
+  //           if (place.id !== id) {
+  //             return place
+  //           }
+  //           else {
+  //             place.reviews = res
+  //             return place
+  //           }
+  //         })
+  //       }
+  //     })
+  //   })
+  // }
 
   getRandomPlace(filters){
     PlacesAdaptor.create(filters).then(res => console.log(res))
