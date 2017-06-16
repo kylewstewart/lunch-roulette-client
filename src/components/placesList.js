@@ -1,21 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Card, Icon, Container } from 'semantic-ui-react'
+import MainCard from './maincard.js'
 
 export default function PlacesList(props) {
-  const places  = props.places
+
 
 
       return (
         <div>
-          <div>
-            { places.map(place =>
-              <li key={place.id}>
-                <Link to={`/places/${place.id}`}>
-                  {place.name}
-                </Link>
-              </li>
-            )}
-          </div>
+        <Container text>
+
+          < MainCard place={props.places[0]} />
+        </Container>
         </div>
       )
 

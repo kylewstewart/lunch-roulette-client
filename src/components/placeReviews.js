@@ -10,7 +10,7 @@ export default function PlaceReviews(props){
       <p> Location: {props.place.location} </p>
       <img src={props.place.image} width="500"/>
 
-      <p> Reviews: <ul>{reviews}</ul>  </p>
+
     </div>
   )
 }
