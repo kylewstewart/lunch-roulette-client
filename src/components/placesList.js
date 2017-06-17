@@ -18,13 +18,12 @@ function PlacesList(props){
           icon='pencil'
           content='Add a review'
           href='#'
-
           />
         <Divider hidden clearing />
         <Divider hidden clearing />
 
         <Container text>
-      <MainCard place={props.places[0]}/>
+          <MainCard place={props.places[0]}/>
         </Container>
 
 
