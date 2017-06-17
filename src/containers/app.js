@@ -8,7 +8,7 @@ import PlacesList from '../components/placesList'
 import PlaceReviews from '../components/placeReviews'
 import Buttons from '../components/buttons'
 import ReviewForm from '../components/reviewForm'
-import FormExampleSubcomponentControl from '../components/formExample'
+import FilterForm from '../components/filterForm'
 
 
 export default class App extends Component {
@@ -16,18 +16,15 @@ export default class App extends Component {
     super()
     this.state = {
       places: [],
-      random_places: [],
-      filters: {
-        cost: "free",
-        bodily_impact: "Yikes!",
-        recommended_for: "hang over city"}
+      random_places: []
       }
     this.addReview = this.addReview.bind(this)
+    this.getRandomPlaces = this.getRandomPlaces.bind(this)
+
   }
 
   componentDidMount(){
     this.getPlaces()
-    this.getRandomPlaces(this.state.filters)
   }
 
   /* Calls places#all, places response into Place objects with an empty
@@ -94,6 +91,7 @@ export default class App extends Component {
               return <PlaceReviews place={place} />
             }}
             />
+          <FilterForm getRandomPlaces={this.getRandomPlaces}/>
           <ReviewForm places={this.state.places} addReview={this.addReview}/>
         </div>
       )
