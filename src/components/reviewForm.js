@@ -24,11 +24,13 @@ class ReviewForm extends Component {
   }
 
   handleChange(e, obj) {
+    console.log(obj.value)
     this.setState({[obj.field]: `${obj.value}`})
   }
 
   handleSubmit(e){
     e.preventDefault()
+    this.props.newReview(this.state)
   }
 
   getPlaces = () => this.props.places.map(place => ({
