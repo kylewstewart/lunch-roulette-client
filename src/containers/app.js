@@ -22,6 +22,7 @@ export default class App extends Component {
         bodily_impact: "Yikes!",
         recommended_for: "hang over city"}
       }
+    this.addReview = this.addReview.bind(this)
   }
 
   componentDidMount(){
@@ -73,6 +74,10 @@ export default class App extends Component {
       .then(res => this.setState({random_places: res}))
   }
 
+  addReview(data) {
+    ReviewsAdaptor.create(data).then(res => console.log(res))
+  }
+
   render() {
     if(!this.state.places[0]) {
       return <h3> Loading Page ...</h3>
@@ -89,7 +94,7 @@ export default class App extends Component {
               return <PlaceReviews place={place} />
             }}
             />
-          <ReviewForm places={this.state.places}/>
+          <ReviewForm places={this.state.places} addReview={this.addReview}/>
         </div>
       )
     }
