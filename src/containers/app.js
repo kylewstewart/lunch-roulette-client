@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+
 import { PlacesAdaptor } from '../adapters/placesAdaptor'
 import { ReviewsAdaptor } from '../adapters/reviewsAdaptor'
+
 import PlacesList from '../components/placesList'
 import PlaceReviews from '../components/placeReviews'
+import Buttons from '../components/buttons'
+import ReviewForm from '../components/reviewForm'
+import FormExampleSubcomponentControl from '../components/formExample'
 
 
 export default class App extends Component {
   constructor(){
     super()
-
     this.state = {
       places: [],
       random_places: [],
@@ -25,8 +29,8 @@ export default class App extends Component {
     this.getRandomPlaces(this.state.filters)
   }
 
-  // Calls API: places#all, places response into a Place object with an empty
-  // Reviews array and pushes each object into a place array in state
+  /* Calls places#all, places response into Place objects with an empty
+  Reviews array and pushes each object into a Place array in state */
   getPlaces(){
     PlacesAdaptor.all()
       .then(res => res.forEach(place => {
@@ -43,8 +47,8 @@ export default class App extends Component {
       }))
   }
 
-  // Calls API: reviews#all to recieves all reviews for a given Place, recieves
-  // an array of Reviews and replaces the Reviews array in that Place object
+  /* Calls reviews#all to recieves all reviews for a given Place, recieves
+   an array of Reviews and replaces the Reviews array in that Place object */
   getPlaceReviews(id){
     ReviewsAdaptor.all(id)
       .then(res => { this.setState(prevState => {
@@ -60,9 +64,9 @@ export default class App extends Component {
       })})
   }
 
-  // Calls API: places#create and posts an object of filter settings, recieves
-  // a random ordered array of Place objects that also includes aggregate review
-  // statistics for each place and set state for random_places state.
+  /* Calls places#create and posts an object of filter settings from state,
+  recieves a random ordered array of Place objects that includes aggregate review
+  statistics and set state for random_places state. */
   getRandomPlaces(filters){
     PlacesAdaptor.create(filters)
     .then(res => console.log(res))
@@ -75,7 +79,7 @@ export default class App extends Component {
     } else {
       return (
         <div>
-
+          <Buttons />
           <PlacesList places={this.state.places}/>
           <Route exact path='/places/:id'
             render={(routerProps) => {
@@ -85,6 +89,7 @@ export default class App extends Component {
               return <PlaceReviews place={place} />
             }}
             />
+          <ReviewForm places={this.state.places}/>
         </div>
       )
     }
