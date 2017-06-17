@@ -12,13 +12,6 @@ function PlacesList(props){
         <Header as='h1' floated='left'>
           Flatiron Lunch Roulette <Icon name='food' />
         </Header>
-        <Button
-          basic
-          floated='right'
-          icon='pencil'
-          content='Add a review'
-          href='#'
-          />
         <Divider hidden clearing />
         <Divider hidden clearing />
 
