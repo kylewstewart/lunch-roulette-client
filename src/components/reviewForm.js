@@ -30,7 +30,7 @@ class ReviewForm extends Component {
 
   handleSubmit(e){
     e.preventDefault()
-    this.props.newReview(this.state)
+    this.props.addReview(this.state)
   }
 
   getPlaces = () => this.props.places.map(place => ({
