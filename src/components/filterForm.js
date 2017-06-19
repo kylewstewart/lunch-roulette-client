@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Form, Container, Input } from 'semantic-ui-react'
+import { Form, Container, Input, Divider } from 'semantic-ui-react'
+import InputModal from './modal.js'
 
 const costOptions = ['All','Practically Free', 'OK', 'OTT'].map(c => ({key: c, text: c, value: c}))
 const recommendedForOptions = ['All','Feelings Friday', 'Javascript Module', 'Post-Lunch Nap in Kay'].map(c => ({key: c, text: c, value: c}))
@@ -39,8 +40,12 @@ class FilterForm extends Component {
             <Form.Select field={'recommended_for'} onChange={this.handleChange} label='Recommended For' options={recommendedForOptions} />
             <Form.Select field={'bodily_impact'} onChange={this.handleChange} label='Bodily Impact' options={bodilyImpactOptions} />
           </Form.Group>
-          <Form.Button>Find me some grub!</Form.Button>
+
+          <Form.Button color="pink" fluid size="massive">Find me some grub!</Form.Button>
         </Form>
+        <Divider/>
+        <InputModal/>
+
       </Container>
     )
   }

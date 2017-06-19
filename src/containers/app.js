@@ -28,6 +28,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    this.getPlaces()
     const filters = {
       cost: 'Practically Free',
       recommended_for: 'Feelings Friday',
@@ -90,7 +91,7 @@ export default class App extends Component {
       return (
         <div>
           <Header />
-          <FilterForm getRandomPlaces={this.getRandomPlaces}/>
+          <FilterForm getRandomPlaces={this.getRandomPlaces} />
           <PlacesList places={this.state.random_places}/>
           <AuthCode getAuthCode={this.getAuthCode} />
           <ReviewForm places={this.state.places} addReview={this.addReview}
