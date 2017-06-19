@@ -7,14 +7,14 @@ const recommendedForOptions = ['Feelings Friday', 'Javascript Module', 'Post-Lun
 const bodilyImpactOptions = ['Like I Went to Yoga', 'Fat Jeans Tomorrow', "Yikes, What's the Bathroom Code?" ].map(c => ({key: c, text: c, value: c}))
 
 class ReviewForm extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.state = {
       place_id: '',
-      email: '',
       authorization_code: '',
       star_rating: '',
+      email: '',
       cost: '',
       recommended_for: '',
       bodily_impact: ''
@@ -23,9 +23,11 @@ class ReviewForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+
   handleChange(e, obj) {
-    console.log(obj.value)
+    console.log(obj)
     this.setState({[obj.field]: `${obj.value}`})
+    this.setState({email: `${this.props.email}`})
   }
 
   handleSubmit(e){
@@ -46,7 +48,6 @@ class ReviewForm extends Component {
         <Form onSubmit={this.handleSubmit}>
 
             <Form.Select field={'place_id'} onChange={this.handleChange} label='Restaurants' options={this.getPlaces()} placeholder='Restaurant' />
-            <Form.Input field={'email'} onChange={this.handleChange} label='Flatiron Email' placeholder='you@flatironschool.com' />
             <Form.Input field={'authorization_code'} onChange={this.handleChange} label='Authorization Code' />
             <Form.Select field={'star_rating'} onChange={this.handleChange} label='Stars' options={starOptions} />
             <Form.Select field={'cost'} onChange={this.handleChange} label='Cost' options={costOptions} />
