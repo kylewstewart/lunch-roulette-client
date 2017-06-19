@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Form, Container, Input } from 'semantic-ui-react'
 
-const costOptions = ['Practically Free', 'OK', 'OTT'].map(c => ({key: c, text: c, value: c}))
-const recommendedForOptions = ['Feelings Friday', 'Javascript Module', 'Post-Lunch Nap in Kay'].map(c => ({key: c, text: c, value: c}))
-const bodilyImpactOptions = ['Like I Went to Yoga', 'Fat Jeans Tomorrow', "Yikes, What's the Bathroom Code?" ].map(c => ({key: c, text: c, value: c}))
+const costOptions = ['All','Practically Free', 'OK', 'OTT'].map(c => ({key: c, text: c, value: c}))
+const recommendedForOptions = ['All','Feelings Friday', 'Javascript Module', 'Post-Lunch Nap in Kay'].map(c => ({key: c, text: c, value: c}))
+const bodilyImpactOptions = ['All','Like I Went to Yoga', 'Fat Jeans Tomorrow', "Yikes, What's the Bathroom Code?" ].map(c => ({key: c, text: c, value: c}))
 
 
 class FilterForm extends Component {
@@ -11,9 +11,9 @@ class FilterForm extends Component {
     super()
 
     this.state = {
-      cost: '',
-      recommended_for: '',
-      bodily_impact: ''
+      cost: 'Practically Free',
+      recommended_for: 'Feelings Friday',
+      bodily_impact: 'Like I Went to Yoga'
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)

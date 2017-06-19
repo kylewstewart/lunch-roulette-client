@@ -9,9 +9,10 @@ function MyHeader(){
     return (
       <Container>
         <Divider hidden />
-        <Header as='h1' floated='left'>
-          Flatiron Lunch Roulette <Icon name='food' />
+        <Header as='h1' floated='center' icon='bomb'>
+          Flatiron Lunch Roulette
         </Header>
+
 
       </Container>
     )

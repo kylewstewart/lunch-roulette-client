@@ -24,12 +24,15 @@ export default class App extends Component {
 
   }
 
-  componentDidMount(){
-    this.getPlaces()
+  componentDidMount() {
+    const filters = {
+      cost: 'Practically Free',
+      recommended_for: 'Feelings Friday',
+      bodily_impact: 'Like I Went to Yoga'
+    }
+    this.getRandomPlaces(filters)
   }
 
-  /* Calls places#all, places response into Place objects with an empty
-  Reviews array and pushes each object into a Place array in state */
   getPlaces(){
     PlacesAdaptor.all()
       .then(res => res.forEach(place => {
@@ -46,8 +49,6 @@ export default class App extends Component {
       }))
   }
 
-  /* Calls reviews#all to recieves all reviews for a given Place, recieves
-   an array of Reviews and replaces the Reviews array in that Place object */
   getPlaceReviews(id){
     ReviewsAdaptor.all(id)
       .then(res => { this.setState(prevState => {
@@ -63,12 +64,8 @@ export default class App extends Component {
       })})
   }
 
-  /* Calls places#create and posts an object of filter settings from state,
-  recieves a random ordered array of Place objects that includes aggregate review
-  statistics and set state for random_places state. */
   getRandomPlaces(filters){
     PlacesAdaptor.create(filters)
-    .then(res => console.log(res))
       .then(res => this.setState({random_places: res}))
   }
 
@@ -77,14 +74,15 @@ export default class App extends Component {
   }
 
   render() {
-    if(!this.state.places[0]) {
+    if(!this.state.random_places[0]) {
+      console.log(this.state.random_places)
       return <h3> Loading Page ...</h3>
     } else {
       return (
         <div>
           <Header />
           <FilterForm getRandomPlaces={this.getRandomPlaces}/>
-          <PlacesList places={this.state.places}/>
+          <PlacesList places={this.state.random_places}/>
           <Route exact path='/places/:id'
             render={(routerProps) => {
               const id = routerProps.match.params.id

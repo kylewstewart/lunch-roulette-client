@@ -52,7 +52,7 @@ class ReviewForm extends Component {
             <Form.Select field={'cost'} onChange={this.handleChange} label='Cost' options={costOptions} />
             <Form.Select field={'recommended_for'} onChange={this.handleChange} label='Recommended For' options={recommendedForOptions} />
             <Form.Select field={'bodily_impact'} onChange={this.handleChange} label='Bodily Impact' options={bodilyImpactOptions} />
-          
+
           <Form.Button>Submit</Form.Button>
         </Form>
       </Container>
