@@ -8,11 +8,8 @@ function PlacesList(props){
 
     return (
       <Container>
-        <Divider hidden />
-        <Divider hidden clearing />
-        <Divider hidden clearing />
-
-        <Container text>
+        <Divider horizontal></Divider>
+        <Container>
           <MainCard place={props.places[0]}/>
         </Container>
 

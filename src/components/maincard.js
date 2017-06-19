@@ -6,9 +6,9 @@ import { Card, Icon, Image, Rating } from 'semantic-ui-react'
 const MainCard = (props) => (
   <Card fluid="true" raised="true">
 
-  <Image fluid="false" src={props.place.image} />
+
   <Card.Content>
-    <Card.Header>
+    <Card.Header className="card-head">
       {props.place.name}
     </Card.Header>
     <Card.Meta>
@@ -30,12 +30,8 @@ const MainCard = (props) => (
       </h3>
     </Card.Description>
   </Card.Content>
-  <Card.Content extra>
-    <a align="left">
-      <Icon name='user' />
-      22 Friends
-    </a>
-  </Card.Content>
+
+  <Image fluid="false" src={props.place.image} />
 </Card>
 )
 
