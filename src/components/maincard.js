@@ -11,7 +11,7 @@ const extra = (
 )
 
 const MainCard = (props) => (
-  <Card
+  <Card fluid="true"
     image={props.place.image}
     header={props.place.name}
     meta={props.place.location}

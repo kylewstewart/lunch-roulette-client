@@ -44,7 +44,7 @@ class ReviewForm extends Component {
     return (
       <Container>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group widths='equal'>
+
             <Form.Select field={'place_id'} onChange={this.handleChange} label='Restaurants' options={this.getPlaces()} placeholder='Restaurant' />
             <Form.Input field={'email'} onChange={this.handleChange} label='Flatiron Email' placeholder='you@flatironschool.com' />
             <Form.Input field={'authorization_code'} onChange={this.handleChange} label='Authorization Code' />
@@ -52,7 +52,7 @@ class ReviewForm extends Component {
             <Form.Select field={'cost'} onChange={this.handleChange} label='Cost' options={costOptions} />
             <Form.Select field={'recommended_for'} onChange={this.handleChange} label='Recommended For' options={recommendedForOptions} />
             <Form.Select field={'bodily_impact'} onChange={this.handleChange} label='Bodily Impact' options={bodilyImpactOptions} />
-          </Form.Group>
+          
           <Form.Button>Submit</Form.Button>
         </Form>
       </Container>

@@ -9,9 +9,6 @@ function PlacesList(props){
     return (
       <Container>
         <Divider hidden />
-        <Header as='h1' floated='left'>
-          Flatiron Lunch Roulette <Icon name='food' />
-        </Header>
         <Divider hidden clearing />
         <Divider hidden clearing />
 

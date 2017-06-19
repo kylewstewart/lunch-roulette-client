@@ -9,6 +9,7 @@ import PlaceReviews from '../components/placeReviews'
 import Buttons from '../components/buttons'
 import ReviewForm from '../components/reviewForm'
 import FilterForm from '../components/filterForm'
+import Header from '../components/header'
 
 
 export default class App extends Component {
@@ -81,7 +82,8 @@ export default class App extends Component {
     } else {
       return (
         <div>
-          <Buttons />
+          <Header />
+          <FilterForm getRandomPlaces={this.getRandomPlaces}/>
           <PlacesList places={this.state.places}/>
           <Route exact path='/places/:id'
             render={(routerProps) => {
@@ -91,7 +93,6 @@ export default class App extends Component {
               return <PlaceReviews place={place} />
             }}
             />
-          <FilterForm getRandomPlaces={this.getRandomPlaces}/>
           <ReviewForm places={this.state.places} addReview={this.addReview}/>
         </div>
       )
