@@ -3,11 +3,13 @@ import { Route } from 'react-router-dom'
 
 import { PlacesAdaptor } from '../adapters/placesAdaptor'
 import { ReviewsAdaptor } from '../adapters/reviewsAdaptor'
+import { UsersAdaptor } from '../adapters/usersAdaptor'
 
 import PlacesList from '../components/placesList'
 import PlaceReviews from '../components/placeReviews'
 import Buttons from '../components/buttons'
 import ReviewForm from '../components/reviewForm'
+import AuthCode from '../components/authCode'
 import FilterForm from '../components/filterForm'
 import Header from '../components/header'
 
@@ -17,11 +19,12 @@ export default class App extends Component {
     super()
     this.state = {
       places: [],
-      random_places: []
+      random_places: [],
+      email: ''
       }
     this.addReview = this.addReview.bind(this)
     this.getRandomPlaces = this.getRandomPlaces.bind(this)
-
+    this.getAuthCode = this.getAuthCode.bind(this)
   }
 
   componentDidMount() {
@@ -70,6 +73,12 @@ export default class App extends Component {
       .then(res => this.setState({random_places: res}))
   }
 
+  getAuthCode(email) {
+    this.getPlaces()
+    UsersAdaptor.authorization_code(email)
+    this.setState({email: `${email.email}`})
+  }
+
   addReview(data) {
     ReviewsAdaptor.create(data).then(res => console.log(res))
   }
@@ -84,15 +93,10 @@ export default class App extends Component {
           <Header />
           <FilterForm getRandomPlaces={this.getRandomPlaces} />
           <PlacesList places={this.state.random_places}/>
-          <Route exact path='/places/:id'
-            render={(routerProps) => {
-              const id = routerProps.match.params.id
-              const place = this.state.places.find(p => p.id === parseInt(id))
-              console.log(place)
-              return <PlaceReviews place={place} />
-            }}
-            />
-          <ReviewForm places={this.state.places} addReview={this.addReview}/>
+          <AuthCode getAuthCode={this.getAuthCode} />
+          <ReviewForm places={this.state.places} addReview={this.addReview}
+                email={this.state.email} />
+
         </div>
       )
     }
